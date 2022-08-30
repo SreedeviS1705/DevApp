@@ -50,7 +50,6 @@ ext{
     preference_version = "1.1.1"
     firebase_bom = "26.0.0"
     fragment_version = "1.2.5"
-    labelspinner = "1.0.0-beta-3"
     colorpicker ="2.2.3"
     amazonaws = "2.13.6"
 }

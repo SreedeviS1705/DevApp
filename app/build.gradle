@@ -1,10 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'dagger.hilt.android.plugin'
 
 //    apply plugin: 'androidx.navigation.safeargs.kotlin'
 
+def MY_URL = '"https://raido.loqqatride.com/api/v2/"'
 android {
     compileSdk 32
 
@@ -19,6 +21,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -30,6 +37,21 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    buildFeatures{
+        viewBinding = true
+        dataBinding = true
+    }
+
+    flavorDimensions "version"
+    productFlavors{
+
+        dev {
+            dimension 'version'
+            buildConfigField("String", "BASE_URL", MY_URL)
+        }
+
     }
 }
 
@@ -66,6 +88,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine"
 
+    //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
@@ -81,16 +104,15 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     implementation 'com.google.dagger:dagger:2.41'
-    kapt 'com.google.dagger:dagger-compiler:2.37'
+    kapt 'com.google.dagger:dagger-compiler:2.41'
 
     //Hilt core dependencies Injection for view model
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_view_model"
-    kapt "androidx.hilt:hilt-compiler:$hilt_view_model"
-//
-//    //Hilt dependencies Injection for WorkManager
-//    implementation "androidx.hilt:hilt-work:$hilt_work"
-//    kapt "androidx.hilt:hilt-compiler:$hilt_work"
-//
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+
+    //Hilt dependencies Injection for WorkManager
+    implementation "androidx.hilt:hilt-work:$hilt_work"
+    kapt "androidx.hilt:hilt-compiler:$hilt_work"
+
 //    //Glide
 //    implementation "com.github.bumptech.glide:glide:$glide"
 //    kapt "com.github.bumptech.glide:compiler:$glide"

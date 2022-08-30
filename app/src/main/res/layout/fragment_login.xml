@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.sreedevi.devapp.ui.login.LoginViewModel" />
+        <variable
+            name="emailError"
+            type="String" />
+        <variable
+            name="passwordError"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.login.LoginFragment"
+        android:padding="30dp">
+
+        <TextView
+            android:id="@+id/id_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_email_lay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_title"
+            android:layout_marginTop="50dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/email_id"
+                errorText="@{viewmodel.emailError}"
+                android:text="@={viewmodel.email}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_password_lay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_email_lay"
+            android:layout_marginTop="50dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="@string/password"
+                errorText="@{viewmodel.passwordError}"
+                android:text="@={viewmodel.password}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:onClick="@{()-> viewmodel.login()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_password_lay"
+            android:layout_marginTop="50dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

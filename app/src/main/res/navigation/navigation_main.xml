@@ -5,10 +5,53 @@
     android:id="@+id/navigation_main"
     app:startDestination="@id/splashFragment">
 
+    <action
+        android:id="@+id/action_to_splashFragment"
+        app:destination="@+id/splashFragment" />
+
+    <action
+        android:id="@+id/action_to_loginFragment"
+        app:destination="@id/loginFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/navigation_main"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_to_dashboardFragment"
+        app:destination="@id/dashboardFragment"
+        app:popUpTo="@id/navigation_main"/>
+
+
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.sreedevi.devapp.ui.splash.SplashFragment"
         tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_main" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.sreedevi.devapp.ui.login.LoginFragment"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:launchSingleTop="true"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.sreedevi.devapp.ui.dashboard.DashBoardFragment"
+        tools:layout="@layout/fragment_dash_board">
+
     </fragment>
 
 </navigation>

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">DevApp</string>
+    <string name="dev_app">Dev App</string>
+    <string name="login">Login</string>
+    <string name="enter_valid_email">Please enter a valid email</string>
+    <string name="enter_valid_password">Please enter valid password</string>
+    <string name="password_must_greater_than_four">Password must be at least 4 characters</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="email_id">Email id</string>
+    <string name="password">Password</string>
 </resources>
